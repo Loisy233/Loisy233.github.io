@@ -4,32 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loisy's Personal Page</title>
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
-    <header>
-        <!-- Background image is set in style.css -->
-    </header>
+<body>
+    <header></header>
 
     <main>
         <section class="container">
             <h1>Hello, I'm Loisy! 👋</h1>
             <p>I'm a passionate developer and an avid gamer. I love exploring new technologies, building fun things with code, and embarking on adventures in virtual worlds.</p>
 
+            <!-- 1. Skills moved up and updated -->
+            <h3>My Skills</h3>
+            <div class="badges">
+                <span class="badge">C</span>
+                <span class="badge">Java</span>
+                <span class="badge">Python</span>
+                <span class="badge">HTML/CSS</span>
+                <span class="badge">JavaScript</span>
+            </div>
+
             <!-- Minecraft Showcase -->
             <div class="game-card" id="minecraft-card">
                 <h2><i class="fas fa-cube"></i> Minecraft</h2>
                 <div class="minecraft-content">
                     <div class="skin-display">
-                        <img id="minecraft-skin" src="https://crafatar.com/renders/body/LoisyLoveLife?overlay" alt="LoisyLoveLife's Minecraft Skin">
-                        <span class="ign">IGN: <strong>LoisyLoveLife</strong></span>
+                        <!-- Skin images will be set by script.js for verification -->
+                        <img id="minecraft-skin-1" src="" alt="Minecraft Skin (crafatar)" style="width:100px; display:none;">
+                        <img id="minecraft-skin-2" src="" alt="Minecraft Skin (minotar)" style="width:100px; display:none;">
+                        <div class="ign">IGN: <strong>LoisyLoveLife</strong></div>
                     </div>
+                    <div id="skin-verifier" style="margin-top:15px; font-size: 0.9em; color: #aaa;"></div>
                 </div>
             </div>
 
-            <!-- osu! Showcase (Data will be loaded by script.js) -->
+            <!-- osu! Showcase -->
             <div class="game-card" id="osu-card">
                 <h2><i class="fas fa-circle-dot"></i> osu!</h2>
                 <div id="osu-data" class="osu-data-loading">
@@ -37,18 +47,10 @@
                 </div>
             </div>
 
-            <!-- General Skills -->
-            <h3>Skills & Interests</h3>
-            <div class="badges">
-                <span class="badge">HTML/CSS</span>
-                <span class="badge">JavaScript</span>
-                <span class="badge">Python</span>
-                <span class="badge">Gamer Life</span>
-            </div>
-
             <!-- Social Links -->
             <div class="social-links">
-                <a href="https://github.com/loisy" target="_blank" title="GitHub">
+                <!-- 2. Updated GitHub Link -->
+                <a href="https://github.com/Loisy233" target="_blank" title="GitHub">
                     <i class="fab fa-github"></i> GitHub
                 </a>
                 <!-- Add more links here if you want -->
@@ -56,7 +58,6 @@
         </section>
     </main>
 
-    <!-- Footer with MiMo's logo -->
     <footer>
         <p>&copy; 2025 Loisy. Built with passion and hosted on GitHub Pages.</p>
         <p class="mimo-credit">
@@ -64,7 +65,6 @@
         </p>
     </footer>
 
-    <!-- The script that fetches osu! data -->
     <script src="script.js"></script>
 
 </body>
