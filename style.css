@@ -24,6 +24,7 @@ body {
 }
 
 /* --- 背景流光溢彩动画 --- */
+/* 【修改点 4】保持背景动画 */
 .background-animation {
     position: fixed;
     top: 0;
@@ -39,7 +40,6 @@ body {
     border-radius: 50%;
     filter: blur(80px);
     opacity: 0.6;
-    /* 【修改点 4】背景动画是存在的。稍微加快一点速度(20s -> 15s)让你更容易察觉 */
     animation: move 15s infinite alternate;
 }
 
@@ -182,7 +182,7 @@ h1 {
 /* --- 游戏版块 --- */
 .game-section {
     display: grid;
-    /* 【修改点 6】改为单列布局，实现一行显示一个游戏信息 */
+    /* 【修改点 6】改为单列显示 (1行1个) */
     grid-template-columns: 1fr;
     gap: 20px;
 }
@@ -203,39 +203,64 @@ h1 {
 .mc-content {
     display: flex;
     align-items: center;
-    gap: 30px; /* 增加一点间距 */
+    gap: 30px;
+    width: 100%;
+    /* 保持内容左对齐，但在单列模式下这会看起来更整齐 */
 }
 
 .mc-skin img {
     filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.5));
     transition: transform 0.3s;
-    /* 【修改点 2 CSS适配】限制大图的最大宽度，保持比例 */
-    max-width: 180px; 
+    /* 限制图片大小，避免把卡片撑爆，同时保持高清 */
+    max-width: 160px; 
     height: auto;
-    border-radius: 12px; /* 给图片加个圆角更好看 */
+    border-radius: 12px;
 }
 
 .mc-skin img:hover {
     transform: scale(1.05) rotate(3deg);
 }
 
+.mc-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
 .mc-info h3 {
-    margin-bottom: 10px;
-    font-size: 1.3rem;
+    margin-bottom: 5px;
+    font-size: 1.4rem;
+    color: var(--accent-color);
 }
 
 .mc-info p {
     color: #ccc;
-    font-size: 1rem;
-    line-height: 1.6;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 3px;
 }
 
-.mc-info p i {
-    color: var(--accent-color);
-    font-size: 0.9rem;
+/* Hypixel 状态条样式 (general-small) */
+.hypixel-stats {
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; /* 电脑端左对齐 */
+}
+
+.hypixel-stats img {
+    height: auto;
+    width: auto;           /* 保持 general-small 的原比例 */
+    max-width: 100%;       /* 防止超出容器 */
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+    image-rendering: -webkit-optimize-contrast; /* 优化显示 */
+}
+
+.hypixel-stats img:hover {
+    transform: scale(1.02);
 }
 
 /* osu! 特有样式 */
@@ -277,18 +302,15 @@ h1 {
 .gemini-link {
     display: flex;
     align-items: center;
-    gap: 5px;
     text-decoration: none;
-    color: var(--text-color);
     transition: opacity 0.3s;
     background: rgba(255, 255, 255, 0.1);
-    padding: 6px 10px; /* 稍微调整内边距适应纯图标 */
     border-radius: 12px;
 }
 
-/* 【修改点 5 CSS适配】纯图标模式的特殊样式 */
+/* 仅图标模式的样式调整 */
 .gemini-link.icon-only {
-    padding: 6px 8px;
+    padding: 6px 10px;
 }
 
 .gemini-link:hover {
@@ -297,7 +319,7 @@ h1 {
 }
 
 .gemini-logo {
-    height: 20px; /* 稍微调大一点图标 */
+    height: 20px;
     width: auto;
     vertical-align: middle;
     display: block;
@@ -305,13 +327,16 @@ h1 {
 
 /* --- 移动端适配 --- */
 @media (max-width: 768px) {
-    /* 移动端本来就是单列，不需要改 grid，但需要调整 mc-content 布局 */
     .mc-content {
         flex-direction: column;
         text-align: center;
     }
     
-    .mc-info p {
-        justify-content: center;
+    .mc-info {
+        align-items: center;
+    }
+
+    .hypixel-stats {
+        justify-content: center; /* 手机端居中 Hypixel 图片 */
     }
 }
