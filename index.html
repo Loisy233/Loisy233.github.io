@@ -3,69 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loisy's Personal Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Loisy's Space</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header></header>
 
-    <main>
-        <section class="container">
-            <h1>Hello, I'm Loisy! 👋</h1>
-            <p>I'm a passionate developer and an avid gamer. I love exploring new technologies, building fun things with code, and embarking on adventures in virtual worlds.</p>
+    <div class="background-animation">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
 
-            <!-- 1. Skills moved up and updated -->
-            <h3>My Skills</h3>
-            <div class="badges">
-                <span class="badge">C</span>
-                <span class="badge">Java</span>
-                <span class="badge">Python</span>
-                <span class="badge">HTML/CSS</span>
-                <span class="badge">JavaScript</span>
+    <div class="container">
+        <div class="glass-card profile-section">
+            <div class="avatar-container">
+                <img src="h.jpg" alt="Loisy Avatar" class="avatar">
+            </div>
+            <h1>Loisy</h1>
+            <p class="subtitle">Code / Rhythm / Blocks</p>
+            
+            <div class="skills">
+                <span class="skill-tag"><i class="fa-brands fa-java"></i> Java</span>
+                <span class="skill-tag"><i class="fa-solid fa-c"></i> C Lang</span>
+                <span class="skill-tag"><i class="fa-brands fa-python"></i> Python</span>
+                <span class="skill-tag"><i class="fa-solid fa-microchip"></i> Embedded</span>
             </div>
 
-            <!-- Minecraft Showcase -->
-            <div class="game-card" id="minecraft-card">
-                <h2><i class="fas fa-cube"></i> Minecraft</h2>
-                <div class="minecraft-content">
-                    <div class="skin-display">
-                        <!-- Skin images will be set by script.js for verification -->
-                        <img id="minecraft-skin-1" src="" alt="Minecraft Skin (crafatar)" style="width:100px; display:none;">
-                        <img id="minecraft-skin-2" src="" alt="Minecraft Skin (minotar)" style="width:100px; display:none;">
-                        <div class="ign">IGN: <strong>LoisyLoveLife</strong></div>
-                    </div>
-                    <div id="skin-verifier" style="margin-top:15px; font-size: 0.9em; color: #aaa;"></div>
-                </div>
-            </div>
-
-            <!-- osu! Showcase -->
-            <div class="game-card" id="osu-card">
-                <h2><i class="fas fa-circle-dot"></i> osu!</h2>
-                <div id="osu-data" class="osu-data-loading">
-                    Loading data for <strong>L0isy</strong>...
-                </div>
-            </div>
-
-            <!-- Social Links -->
             <div class="social-links">
-                <!-- 2. Updated GitHub Link -->
-                <a href="https://github.com/Loisy233" target="_blank" title="GitHub">
-                    <i class="fab fa-github"></i> GitHub
+                <a href="https://github.com/Loisy233" target="_blank" class="social-btn github">
+                    <i class="fa-brands fa-github"></i> GitHub
                 </a>
-                <!-- Add more links here if you want -->
+                <a href="https://space.bilibili.com/233319653" target="_blank" class="social-btn bilibili">
+                    <i class="fa-brands fa-bilibili"></i> Bilibili
+                </a>
+                <a href="https://www.youtube.com/@Loisy_uwu" target="_blank" class="social-btn youtube">
+                    <i class="fa-brands fa-youtube"></i> YouTube
+                </a>
             </div>
-        </section>
-    </main>
+        </div>
 
-    <footer>
-        <p>&copy; 2025 Loisy. Built with passion and hosted on GitHub Pages.</p>
-        <p class="mimo-credit">
-            Assisted by <a href="https://aistudio.xiaomimimo.com/" target="_blank" title="Visit MiMo's official site"><img src="https://aistudio.xiaomimimo.com/logoDark.7bbe3994.webp" alt="MiMo Logo" class="mimo-logo"></a>
-        </p>
-    </footer>
+        <div class="game-section">
+            
+            <div class="glass-card game-card minecraft">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-cube"></i> Minecraft</h2>
+                </div>
+                <div class="mc-content">
+                    <div class="mc-skin">
+                        <img src="https://minotar.net/armor/body/LoisyLoveLife/150.png" alt="Minecraft Skin">
+                    </div>
+                    <div class="mc-info">
+                        <h3>LoisyLoveLife</h3>
+                        <p>Fabric Mod Developer</p>
+                        <p>Version: 1.21</p>
+                    </div>
+                </div>
+            </div>
 
-    <script src="script.js"></script>
+            <div class="glass-card game-card osu">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-circle-notch"></i> osu!</h2>
+                </div>
+                <div class="osu-content">
+                    <a href="https://osu.ppy.sh/users/20348402" target="_blank">
+                        <img src="https://osu-sig.vercel.app/card?user=20348402&mode=std&lang=en&animation=true" alt="osu! Status">
+                    </a>
+                    <p class="osu-ign">Player: <strong>L0isy</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="glass-card footer">
+            <div class="copyright">
+                &copy; 2025 Loisy. Hosted on GitHub Pages.
+            </div>
+            
+            <div class="assist-container">
+                <span>Assisted by</span>
+                <a href="https://gemini.google.com" target="_blank" class="gemini-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" alt="Gemini Logo" class="gemini-logo">
+                    <span class="gemini-text">Google Gemini</span>
+                </a>
+            </div>
+        </footer>
+    </div>
 
 </body>
 </html>
