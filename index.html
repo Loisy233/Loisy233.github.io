@@ -59,10 +59,30 @@
                         <p>Fabric Mod Developer</p>
                         <p>Version: 1.21</p>
                         
-                        <div class="hypixel-stats">
-                            <a href="https://plancke.io/hypixel/player/stats/LoisyLoveLife" target="_blank">
-                                <img src="https://hypixel.paniek.de/signature/6d1e0916684c400a8fec6df9367c2a98/general-small" alt="Hypixel Status">
-                            </a>
+                        <div class="hypixel-custom-card" id="hypixel-card">
+                            <div class="loading-spinner">
+                                <i class="fa-solid fa-spinner fa-spin"></i> Loading Stats...
+                            </div>
+                            
+                            <div class="stats-content" style="display: none;">
+                                <div class="rank-badge" id="player-rank">LOADING</div>
+                                
+                                <div class="stats-grid">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Level</span>
+                                        <span class="stat-value" id="player-level">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Points</span>
+                                        <span class="stat-value" id="player-ap">0</span>
+                                    </div>
+                                </div>
+
+                                <div class="status-indicator">
+                                    <span class="status-dot" id="online-dot"></span>
+                                    <span id="online-text">Checking...</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -93,6 +113,75 @@
             </div>
         </footer>
     </div>
+<script>
+        async function fetchHypixelStats() {
+            // 使用你的 UUID
+            const uuid = '6d1e0916684c400a8fec6df9367c2a98';
+            // 使用 ashcon.app 的公共 API (不需要 Key)
+            const apiUrl = `https://api.ashcon.app/hypixel/v2/player/${uuid}`;
+            
+            const card = document.getElementById('hypixel-card');
+            const loader = card.querySelector('.loading-spinner');
+            const content = card.querySelector('.stats-content');
 
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('API Error');
+                const data = await response.json();
+
+                // 1. 处理 Rank (如果是 MVP+ 这种特殊 Rank)
+                let rankText = data.rank.replace(/_/g, ' '); // 去掉下划线
+                // 某些高级 Rank 在 API 里可能显示为 VIP_PLUS 等，这里做个简单美化
+                const rankElement = document.getElementById('player-rank');
+                
+                // 设置 Rank 颜色 (MVP+ 通常是青色)
+                if(rankText.includes('MVP')) {
+                    rankElement.classList.add('rank-mvp');
+                    // 如果有自定义 + 颜色，API 会返回，这里我们先简化处理
+                    rankText = `[${rankText.replace('PLUS', '+')}]`; 
+                } else if (rankText.includes('VIP')) {
+                    rankElement.classList.add('rank-vip');
+                    rankText = `[${rankText.replace('PLUS', '+')}]`;
+                } else {
+                    rankElement.classList.add('rank-default');
+                }
+                rankElement.textContent = rankText;
+
+                // 2. 处理 Level (保留1位小数)
+                document.getElementById('player-level').textContent = Math.floor(data.level);
+
+                // 3. 处理成就点数
+                document.getElementById('player-ap').textContent = data.achievement_points.toLocaleString();
+
+                // 4. 处理在线状态
+                const isOnline = data.online;
+                const dot = document.getElementById('online-dot');
+                const statusText = document.getElementById('online-text');
+                
+                if (isOnline) {
+                    dot.style.background = '#55ff55'; // 绿色
+                    dot.style.boxShadow = '0 0 10px #55ff55';
+                    statusText.textContent = 'Currently Online';
+                    statusText.style.color = '#ccffcc';
+                } else {
+                    dot.style.background = '#ff5555'; // 红色
+                    dot.style.boxShadow = 'none';
+                    statusText.textContent = 'Offline';
+                    statusText.style.color = '#ffcccc';
+                }
+
+                // 隐藏加载，显示内容
+                loader.style.display = 'none';
+                content.style.display = 'block';
+
+            } catch (error) {
+                console.error(error);
+                loader.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Stats Failed';
+            }
+        }
+
+        // 页面加载后执行
+        document.addEventListener('DOMContentLoaded', fetchHypixelStats);
+    </script>
 </body>
 </html>
