@@ -39,7 +39,8 @@ body {
     border-radius: 50%;
     filter: blur(80px);
     opacity: 0.6;
-    animation: move 20s infinite alternate;
+    /* 【修改点 4】背景动画是存在的。稍微加快一点速度(20s -> 15s)让你更容易察觉 */
+    animation: move 15s infinite alternate;
 }
 
 .blob-1 {
@@ -65,12 +66,12 @@ body {
     background: #00ffcc;
     bottom: 20%;
     left: 30%;
-    animation-delay: -10s;
+    animation-delay: -7s;
 }
 
 @keyframes move {
     0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(20px, -20px) scale(1.1); }
+    100% { transform: translate(30px, -30px) scale(1.1); }
 }
 
 /* --- 容器布局 --- */
@@ -181,7 +182,8 @@ h1 {
 /* --- 游戏版块 --- */
 .game-section {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* 【修改点 6】改为单列布局，实现一行显示一个游戏信息 */
+    grid-template-columns: 1fr;
     gap: 20px;
 }
 
@@ -201,26 +203,39 @@ h1 {
 .mc-content {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 30px; /* 增加一点间距 */
 }
 
 .mc-skin img {
     filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.5));
     transition: transform 0.3s;
+    /* 【修改点 2 CSS适配】限制大图的最大宽度，保持比例 */
+    max-width: 180px; 
+    height: auto;
+    border-radius: 12px; /* 给图片加个圆角更好看 */
 }
 
 .mc-skin img:hover {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.05) rotate(3deg);
 }
 
 .mc-info h3 {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
 }
 
 .mc-info p {
     color: #ccc;
+    font-size: 1rem;
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mc-info p i {
+    color: var(--accent-color);
     font-size: 0.9rem;
-    line-height: 1.4;
 }
 
 /* osu! 特有样式 */
@@ -235,19 +250,14 @@ h1 {
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-.osu-ign {
-    margin-top: 10px;
-    font-size: 0.9rem;
-}
-
-/* --- 底部 Footer (更新版) --- */
+/* --- 底部 Footer --- */
 .footer {
     display: flex;
-    flex-direction: column; /* 改为垂直排列 */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 1.5rem;
-    gap: 10px; /* 两行之间的间距 */
+    gap: 10px;
     text-align: center;
 }
 
@@ -258,8 +268,8 @@ h1 {
 
 .assist-container {
     display: flex;
-    align-items: center; /* 垂直居中对齐 */
-    gap: 6px; /* 文字和图标的间距 */
+    align-items: center;
+    gap: 8px;
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.7);
 }
@@ -270,11 +280,15 @@ h1 {
     gap: 5px;
     text-decoration: none;
     color: var(--text-color);
-    font-weight: 500;
     transition: opacity 0.3s;
-    background: rgba(255, 255, 255, 0.1); /* 胶囊按钮背景 */
-    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 10px; /* 稍微调整内边距适应纯图标 */
     border-radius: 12px;
+}
+
+/* 【修改点 5 CSS适配】纯图标模式的特殊样式 */
+.gemini-link.icon-only {
+    padding: 6px 8px;
 }
 
 .gemini-link:hover {
@@ -283,24 +297,21 @@ h1 {
 }
 
 .gemini-logo {
-    height: 18px; /* 调整图标大小 */
+    height: 20px; /* 稍微调大一点图标 */
     width: auto;
     vertical-align: middle;
+    display: block;
 }
 
 /* --- 移动端适配 --- */
 @media (max-width: 768px) {
-    .game-section {
-        grid-template-columns: 1fr;
-    }
-    
+    /* 移动端本来就是单列，不需要改 grid，但需要调整 mc-content 布局 */
     .mc-content {
         flex-direction: column;
         text-align: center;
     }
-
-    .assist-container {
-        flex-wrap: wrap;
+    
+    .mc-info p {
         justify-content: center;
     }
 }
