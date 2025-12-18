@@ -4,59 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loisy's Personal Page</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for icons (optional, but looks nice) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" alt="Profile Picture" class="profile-pic">
-            <h1>Loisy</h1>
-            <p>Gamer, Coder, and Content Enjoyer</p>
-        </header>
+    <!-- Header with your avatar (h.png) -->
+    <header>
+        <!-- Background image is set in style.css -->
+    </header>
 
-        <main>
-            <!-- About Me Section -->
-            <section class="card">
-                <h2><i class="fas fa-user"></i> About Me</h2>
-                <p>Hey there! I'm <strong>Loisy</strong>. I'm an avid gamer, currently diving into the worlds of <strong>Minecraft</strong> and <strong>osu!</strong>. When I'm not gaming, I'm exploring the world of code.</p>
-                <p><strong>Minecraft IGN:</strong> <code>LoisyLoveLife</code></p>
-                <p><strong>osu! Username:</strong> <code>L0isy</code></p>
-            </section>
+    <main>
+        <section class="container">
+            <h1>Hello, I'm Loisy! 👋</h1>
+            <p>I'm a passionate developer and an avid gamer. I love exploring new technologies, building fun things with code, and embarking on adventures in virtual worlds.</p>
 
-            <!-- Social Links Section -->
-            <section class="card">
-                <h2><i class="fas fa-globe"></i> Find Me Online</h2>
-                <div class="social-grid">
-                    <a href="https://www.youtube.com/@Loisy_uwu" target="_blank" class="social-btn youtube">
-                        <i class="fab fa-youtube"></i> YouTube
-                    </a>
-                    <a href="https://space.bilibili.com/233319653" target="_blank" class="social-btn bilibili">
-                        <i class="fas fa-video"></i> Bilibili
-                    </a>
-                    <a href="https://osu.ppy.sh/users/20348402" target="_blank" class="social-btn osu">
-                        <i class="fas fa-gamepad"></i> osu!
-                    </a>
+            <!-- Minecraft Showcase -->
+            <div class="game-card" id="minecraft-card">
+                <h2><i class="fas fa-cube"></i> Minecraft</h2>
+                <div class="minecraft-content">
+                    <div class="skin-display">
+                        <img id="minecraft-skin" src="https://crafatar.com/renders/body/LoisyLoveLife?overlay" alt="LoisyLoveLife's Minecraft Skin">
+                        <span class="ign">IGN: <strong>LoisyLoveLife</strong></span>
+                    </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- Skills Section -->
-            <section class="card">
-                <h2><i class="fas fa-code"></i> Skills</h2>
-                <div class="skills-tags">
-                    <span class="tag">Java</span>
-                    <span class="tag">C</span>
-                    <span class="tag">Python</span>
+            <!-- osu! Showcase (Data will be loaded by script.js) -->
+            <div class="game-card" id="osu-card">
+                <h2><i class="fas fa-circle-dot"></i> osu!</h2>
+                <div id="osu-data" class="osu-data-loading">
+                    Loading data for <strong>L0isy</strong>...
                 </div>
-            </section>
-        </main>
+            </div>
 
-        <footer>
-            <p>&copy; 2024 Loisy. Built with passion and hosted on GitHub Pages.</p>
-        </footer>
-    </div>
+            <!-- General Skills -->
+            <h3>Skills & Interests</h3>
+            <div class="badges">
+                <span class="badge">HTML/CSS</span>
+                <span class="badge">JavaScript</span>
+                <span class="badge">Python</span>
+                <span class="badge">Gamer Life</span>
+            </div>
+
+            <!-- Social Links -->
+            <div class="social-links">
+                <a href="https://github.com/loisy" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <!-- Add more links here if you want -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer with MiMo's logo -->
+    <footer>
+        <p>&copy; 2025 Loisy. Built with passion and hosted on GitHub Pages.</p>
+        <p class="mimo-credit">
+            Assisted by <a href="https://aistudio.xiaomimimo.com/" target="_blank" title="Visit MiMo's official site"><img src="https://aistudio.xiaomimimo.com/logoDark.7bbe3994.webp" alt="MiMo Logo" class="mimo-logo"></a>
+        </p>
+    </footer>
+
+    <!-- The script that fetches osu! data -->
+    <script src="script.js"></script>
 
 </body>
 </html>
