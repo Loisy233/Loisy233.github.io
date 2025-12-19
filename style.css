@@ -1,8 +1,41 @@
 :root {
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --text-color: #ffffff;
-    --accent-color: #00d2ff;
+    --transition-speed: 0.4s;
+
+    /* --- Light Theme --- */
+    --bg-light: #f0f2f5;
+    --text-light: #1c1e21;
+    --text-secondary-light: #65676b;
+    --accent-light: #007aff;
+    --card-bg-light: rgba(255, 255, 255, 0.6);
+    --card-border-light: rgba(0, 0, 0, 0.1);
+
+    /* --- Dark Theme --- */
+    --bg-dark: #0b0918;
+    --text-dark: #f0f2f5;
+    --text-secondary-dark: rgba(240, 242, 245, 0.7);
+    --accent-dark: #00d2ff;
+    --card-bg-dark: rgba(30, 30, 45, 0.5);
+    --card-border-dark: rgba(255, 255, 255, 0.1);
+}
+
+/* Default to Dark Mode */
+:root {
+    --bg-color: var(--bg-dark);
+    --text-color: var(--text-dark);
+    --text-color-secondary: var(--text-secondary-dark);
+    --accent-color: var(--accent-dark);
+    --card-bg: var(--card-bg-dark);
+    --card-border: var(--card-border-dark);
+}
+
+/* Light mode override */
+.light-mode {
+    --bg-color: var(--bg-light);
+    --text-color: var(--text-light);
+    --text-color-secondary: var(--text-secondary-light);
+    --accent-color: var(--accent-light);
+    --card-bg: var(--card-bg-light);
+    --card-border: var(--card-border-light);
 }
 
 * {
@@ -12,396 +45,165 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html {
+    /* For Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) transparent;
+}
+
 body {
-    background-color: #0f0f1a;
+    background: var(--bg-color);
     color: var(--text-color);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* Use overflow-y to enable scrollbar ONLY when needed */
+    overflow-y: auto; 
     overflow-x: hidden;
     padding: 20px;
+    transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
-/* --- 背景流光溢彩动画 --- */
+/* --- Microsoft Aurora Background (Always On) --- */
 .background-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1; overflow: hidden; 
 }
 
-.blob {
+[class^="blob-"] {
     position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.6;
-    animation: move 15s infinite alternate;
+    animation: move 30s infinite alternate;
 }
+:root:not(.light-mode) [class^="blob-"] { mix-blend-mode: screen; opacity: 0.8; }
+.light-mode [class^="blob-"] { mix-blend-mode: multiply; opacity: 0.7; }
 
-.blob-1 {
-    width: 400px;
-    height: 400px;
-    background: #ff00cc;
-    top: -100px;
-    left: -100px;
-}
-
-.blob-2 {
-    width: 500px;
-    height: 500px;
-    background: #3333ff;
-    bottom: -100px;
-    right: -100px;
-    animation-delay: -5s;
-}
-
-.blob-3 {
-    width: 300px;
-    height: 300px;
-    background: #00ffcc;
-    bottom: 20%;
-    left: 30%;
-    animation-delay: -7s;
-}
+.blob-red { width: 35vw; height: 35vw; top: 10vh; left: 5vw; background: radial-gradient(circle, #F25022, transparent 70%); animation-duration: 40s; }
+.blob-green { width: 45vw; height: 45vw; top: 20vh; right: 10vw; background: radial-gradient(circle, #7FBA00, transparent 70%); animation-delay: -5s; animation-duration: 30s; }
+.blob-blue { width: 40vw; height: 40vw; bottom: 5vh; left: 15vw; background: radial-gradient(circle, #00A4EF, transparent 70%); animation-duration: 35s; animation-delay: -10s; }
+.blob-yellow { width: 30vw; height: 30vw; bottom: 20vh; right: 20vw; background: radial-gradient(circle, #FFB900, transparent 70%); animation-duration: 45s; animation-delay: -15s; }
 
 @keyframes move {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(30px, -30px) scale(1.1); }
+  0% { transform: translate(0, 0) rotate(0deg) scale(1.2); filter: blur(70px); }
+  100% { transform: translate(15vw, -15vh) rotate(200deg) scale(1.8); filter: blur(90px); }
 }
 
-/* --- 容器布局 --- */
-.container {
-    width: 100%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
 
-/* --- 核心：液态玻璃样式 --- */
+/* --- Glassmorphism Card Style (Unified) --- */
 .glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
     padding: 2rem;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    transition: transform 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    transition: all var(--transition-speed) ease;
 }
 
-.glass-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.4);
-}
-
-/* --- 个人简介部分 --- */
-.profile-section {
-    text-align: center;
-}
-
-.avatar-container {
-    margin-bottom: 1rem;
-}
-
-.avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid rgba(255,255,255,0.5);
-    object-fit: cover;
-}
-
-h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px rgba(255,255,255,0.3);
-}
-
-.subtitle {
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.8);
-    margin-bottom: 1.5rem;
-}
-
-/* --- 技能标签 --- */
-.skills {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-}
-
-.skill-tag {
-    background: rgba(255,255,255,0.15);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-/* --- 社交按钮 --- */
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.social-btn {
-    text-decoration: none;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid transparent;
-}
-
-.social-btn.github { background: rgba(0,0,0,0.5); }
-.social-btn.bilibili { background: rgba(251, 114, 153, 0.5); }
-.social-btn.youtube { background: rgba(255, 0, 0, 0.5); }
-
-.social-btn:hover {
-    filter: brightness(1.2);
-    transform: scale(1.05);
-}
-
-/* --- 游戏版块 --- */
-.game-section {
-    display: grid;
-    /* 改为单列显示 */
-    grid-template-columns: 1fr;
-    gap: 20px;
-}
-
-.game-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.card-header h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--accent-color);
-}
-
-/* --- Minecraft 特有样式 --- */
-.mc-content {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    width: 100%;
-}
-
-.mc-skin img {
-    filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.5));
-    transition: transform 0.3s;
-    /* 限制图片大小 */
-    max-width: 160px; 
-    height: auto;
-    border-radius: 12px;
-}
-
-.mc-skin img:hover {
-    transform: scale(1.05) rotate(3deg);
-}
-
-.mc-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-}
-
-.mc-info h3 {
-    margin-bottom: 5px;
-    font-size: 1.4rem;
-    color: var(--accent-color);
-}
-
-.mc-info p {
-    color: #ccc;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin-bottom: 3px;
-}
-
-/* --- Hypixel 自定义绘制卡片样式 (新) --- */
-.hypixel-custom-card {
-    margin-top: 15px;
-    background: rgba(0, 0, 0, 0.3); /* 深色半透明背景 */
-    border-radius: 12px;
-    padding: 15px;
-    width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    min-height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.loading-spinner {
-    text-align: center;
-    color: rgba(255,255,255,0.6);
-    font-size: 0.9rem;
-}
-
-.rank-badge {
-    font-weight: 800;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-/* Rank 颜色定义 */
-.rank-mvp {
-    color: #55FFFF; /* MVP+ 青色 */
-    text-shadow: 0 0 8px rgba(85, 255, 255, 0.6);
-}
-
-.rank-vip {
-    color: #55FF55; /* VIP 绿色 */
-}
-
-.rank-default {
-    color: #AAAAAA;
-}
-
-/* 数据网格 */
-.stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 10px;
-}
-
-.stat-item {
-    display: flex;
-    flex-direction: column;
-}
-
-.stat-label {
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.5);
-    text-transform: uppercase;
-}
-
-.stat-value {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #fff;
-}
-
-/* 在线状态指示器 */
-.status-indicator {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.85rem;
-}
-
-.status-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #ccc;
-    transition: all 0.3s;
-}
-
-/* --- osu! 特有样式 --- */
-.osu-content {
-    text-align: center;
-    width: 100%;
-}
-
-.osu-content img {
+/* --- Layout & Typography --- */
+.container { width: 100%; max-width: 1080px; display: flex; flex-direction: column; gap: 30px; }
+.profile-section-glass { display: flex; align-items: center; gap: 30px; }
+.profile-image-container { flex-basis: 40%; align-self: flex-end; }
+.profile-body-image {
     max-width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    filter: drop-shadow(10px 10px 20px rgba(0,0,0,0.2));
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%),
+                linear-gradient(to right, black 95%, transparent 100%);
+    mask-composite: intersect;
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%),
+                        linear-gradient(to right, black 95%, transparent 100%);
+    -webkit-mask-composite: source-in;
 }
+.profile-info { flex-basis: 60%; text-align: center; }
+.game-section { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.game-card { text-align: center; display: flex; flex-direction: column; }
+h1 { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-color); }
+.subtitle { font-size: 1.1rem; color: var(--text-color-secondary); margin-bottom: 2rem; }
+.card-header h2 { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--accent-color); transition: color var(--transition-speed); }
 
-/* --- 底部 Footer --- */
-.footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1.5rem;
-    gap: 10px;
-    text-align: center;
+/* --- Glass Elements --- */
+.skills { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 2rem; }
+.skill-tag-glass {
+    padding: 8px 18px; border-radius: 12px; font-size: 0.9rem;
+    display: flex; align-items: center; gap: 8px;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    color: var(--text-color-secondary);
 }
+.skill-tag-glass i { color: var(--accent-color); transition: color var(--transition-speed); }
 
-.copyright {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
+.social-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.social-btn-glass {
+    text-decoration: none; color: var(--text-color-secondary); width: 50px; height: 50px; border-radius: 50%;
+    font-size: 1.2rem; display: flex; justify-content: center; align-items: center;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    transition: all var(--transition-speed) ease;
 }
-
-.assist-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
+.social-btn-glass:hover { color: var(--accent-color); background: var(--card-bg); border-color: var(--accent-color); }
+.theme-switcher {
+    position: fixed; top: 20px; right: 20px; z-index: 100; width: 45px; height: 45px; border-radius: 50%;
+    cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
+    color: var(--text-color); border: 1px solid var(--card-border); background: var(--card-bg);
+    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    transition: all var(--transition-speed) ease;
 }
+.theme-switcher:hover { border-color: var(--accent-color); }
+.theme-switcher .fa-sun, .dark-mode .theme-switcher .fa-moon { display: none; }
+.theme-switcher .fa-moon, .dark-mode .theme-switcher .fa-sun { display: block; }
 
-.gemini-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    transition: opacity 0.3s;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-}
+/* MC, OSU, Footer */
+.mc-accounts-container, .mc-account, .mc-skin, .osu-content, .footer { display: flex; text-align: center; }
+.mc-accounts-container { justify-content: center; align-items: flex-end; gap: 20px; width: 100%; flex-wrap: wrap; }
+.mc-account { flex-direction: column; align-items: center; gap: 10px; }
+.mc-skin { min-height: 280px; align-items: flex-end; }
+.mc-skin img { height: 280px; width: auto; filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.5)); }
+.mc-account h3 { font-size: 1.1rem; font-weight: 600; color: var(--text-color-secondary); }
+.osu-content img { max-width: 100%; border-radius: 8px; }
+.footer { padding: 1.5rem; flex-direction:column; justify-content:center; align-items:center; }
+.copyright, .assist-container { font-size: 0.9rem; color: var(--text-color-secondary); }
+.assist-container { gap: 8px; margin-top:10px;}
+.gemini-logo { height: 20px; width: auto; }
 
-/* 仅图标模式的样式 */
-.gemini-link.icon-only {
-    padding: 6px 10px;
-}
-
-.gemini-link:hover {
-    opacity: 0.8;
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.gemini-logo {
-    height: 20px;
-    width: auto;
-    vertical-align: middle;
-    display: block;
-}
-
-/* --- 移动端适配 --- */
+/* Responsive */
 @media (max-width: 768px) {
-    .mc-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .mc-info {
-        align-items: center;
-    }
+    .profile-section-glass { flex-direction: column; }
+    .profile-image-container { align-self: center; max-width: 250px; }
+    .profile-info { flex-basis: auto; width: 100%; }
+    .game-section { grid-template-columns: 1fr; }
+}
 
-    .hypixel-custom-card {
-        text-align: center;
-    }
+/* Browser Warning */
+#browser-warning { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 1000; justify-content: center; align-items: center; text-align: center; color: #333; }
+#browser-warning .warning-box { background-color: #fff; padding: 3rem; border-radius: 15px; max-width: 500px; margin: 20px; }
+#browser-warning h1 { color: #d93025; }
+#browser-warning p { margin: 1rem 0; line-height: 1.6; }
+#browser-warning a { color: #1a73e8; text-decoration: none; font-weight: 600; }
+#browser-warning a:hover { text-decoration: underline; }
 
-    .status-indicator {
-        justify-content: center;
-    }
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 10px; /* Pill shape */
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    transition: background-color .3s ease, border-radius .3s ease;
+}
+
+body:hover::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+}
+
+/* Morph to ball on hover/drag */
+body:hover::-webkit-scrollbar-thumb:hover,
+body:hover::-webkit-scrollbar-thumb:active {
+    background-color: var(--accent-color);
+    border-radius: 50%;
 }

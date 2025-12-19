@@ -4,86 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loisy's Space</title>
-    <link rel="icon" href="h.jpg" type="image/jpeg">
+    <link rel="icon" href="res/loisy1.webp" type="image/webp">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-    <div class="background-animation">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
+    <div id="browser-warning">
+        <div class="warning-box">
+            <h1>Outdated Browser</h1>
+            <p>We have detected that you are using Internet Explorer or another outdated browser. For the best web experience and security, we strongly recommend upgrading to a modern browser.</p>
+            <p>Recommended browsers: <a href="https://www.google.com/chrome/">Chrome</a>, <a href="https://www.mozilla.org/firefox/">Firefox</a>, or <a href="https://www.microsoft.com/edge">Edge</a>.</p>
+        </div>
     </div>
 
-    <div class="container">
-        <div class="glass-card profile-section">
-            <div class="avatar-container">
-                <img src="h.jpg" alt="Loisy Avatar" class="avatar">
-            </div>
-            <h1>Loisy</h1>
-            <p class="subtitle">Code / Rhythm / Blocks</p>
-            
-            <div class="skills">
-                <span class="skill-tag"><i class="fa-brands fa-java"></i> Java</span>
-                <span class="skill-tag"><i class="fa-solid fa-c"></i> C Lang</span>
-                <span class="skill-tag"><i class="fa-brands fa-python"></i> Python</span>
-                <span class="skill-tag"><i class="fa-solid fa-microchip"></i> Embedded</span>
-            </div>
+    <button id="theme-toggle-btn" class="theme-switcher" aria-label="Toggle theme">
+        <i class="fas fa-sun" id="theme-icon-sun"></i>
+        <i class="fas fa-moon" id="theme-icon-moon"></i>
+    </button>
 
-            <div class="social-links">
-                <a href="https://github.com/Loisy233" target="_blank" class="social-btn github">
-                    <i class="fa-brands fa-github"></i> GitHub
-                </a>
-                <a href="https://space.bilibili.com/233319653" target="_blank" class="social-btn bilibili">
-                    <i class="fa-brands fa-bilibili"></i> Bilibili
-                </a>
-                <a href="https://www.youtube.com/@Loisy_uwu" target="_blank" class="social-btn youtube">
-                    <i class="fa-brands fa-youtube"></i> YouTube
-                </a>
-            </div>
-        </div>
+    <div class="background-animation">
+        <div class="blob-red"></div>
+        <div class="blob-green"></div>
+        <div class="blob-blue"></div>
+        <div class="blob-yellow"></div>
+    </div>
 
-        <div class="game-section">
-            
+    <main class="container">
+        <section class="profile-section-glass">
+            <div class="profile-image-container">
+                <img src="res/Loisy-Body.webp" alt="Loisy Virtual Avatar" class="profile-body-image">
+            </div>
+            <div class="glass-card profile-info">
+                <h1>Loisy</h1>
+                <p class="subtitle">Code / Rhythm / Blocks</p>
+                
+                <div class="skills">
+                    <span class="skill-tag-glass"><i class="fa-brands fa-java"></i> Java</span>
+                    <span class="skill-tag-glass"><i class="fa-solid fa-c"></i> C Lang</span>
+                    <span class="skill-tag-glass"><i class="fa-brands fa-python"></i> Python</span>
+                    <span class="skill-tag-glass"><i class="fa-solid fa-microchip"></i> Embedded</span>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://github.com/Loisy233" target="_blank" class="social-btn-glass github" aria-label="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://space.bilibili.com/233319653" target="_blank" class="social-btn-glass bilibili" aria-label="Bilibili">
+                        <i class="fa-brands fa-bilibili"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@Loisy_uwu" target="_blank" class="social-btn-glass youtube" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://qm.qq.com/q/odvAcfIkla" target="_blank" class="social-btn-glass qq" aria-label="QQ Group">
+                        <i class="fa-brands fa-qq"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-section">
             <div class="glass-card game-card minecraft">
                 <div class="card-header">
                     <h2><i class="fa-solid fa-cube"></i> Minecraft</h2>
                 </div>
-                <div class="mc-content">
-                    <div class="mc-skin">
-                        <img src="LoisyLoveLife-avatar.png" alt="Minecraft Skin">
-                    </div>
-                    <div class="mc-info">
-                        <h3>LoisyLoveLife</h3>
-                        <p>Fabric Mod Developer</p>
-                        <p>Version: 1.21</p>
-                        
-                        <div class="hypixel-custom-card" id="hypixel-card">
-                            <div class="loading-spinner">
-                                <i class="fa-solid fa-spinner fa-spin"></i> Loading Stats...
-                            </div>
-                            
-                            <div class="stats-content" style="display: none;">
-                                <div class="rank-badge" id="player-rank">LOADING</div>
-                                
-                                <div class="stats-grid">
-                                    <div class="stat-item">
-                                        <span class="stat-label">Level</span>
-                                        <span class="stat-value" id="player-level">0</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Points</span>
-                                        <span class="stat-value" id="player-ap">0</span>
-                                    </div>
-                                </div>
-
-                                <div class="status-indicator">
-                                    <span class="status-dot" id="online-dot"></span>
-                                    <span id="online-text">Checking...</span>
-                                </div>
-                            </div>
+                <div class="mc-accounts-container">
+                    <div class="mc-account">
+                        <div class="mc-skin">
+                            <img src="" alt="LoisyLoveLife Minecraft Skin" id="minecraft-skin-image-1">
                         </div>
+                        <h3 id="minecraft-username-1">LoisyLoveLife</h3>
+                    </div>
+                    <div class="mc-account">
+                        <div class="mc-skin">
+                            <img src="" alt="LoisyNotFound Minecraft Skin" id="minecraft-skin-image-2">
+                        </div>
+                        <h3 id="minecraft-username-2">LoisyNotFound</h3>
                     </div>
                 </div>
             </div>
@@ -94,11 +89,11 @@
                 </div>
                 <div class="osu-content">
                     <a href="https://osu.ppy.sh/users/20348402" target="_blank">
-                        <img src="https://osu-sig.vercel.app/card?user=20348402&mode=std&lang=en&animation=true" alt="osu! Status">
+                        <img src="https://osu-sig.vercel.app/card?user=20348402&mode=std&lang=en&animation=true" alt="osu! Status" loading="lazy">
                     </a>
                     </div>
             </div>
-        </div>
+        </section>
 
         <footer class="glass-card footer">
             <div class="copyright">
@@ -112,76 +107,7 @@
                 </a>
             </div>
         </footer>
-    </div>
-<script>
-        async function fetchHypixelStats() {
-            // 使用你的 UUID
-            const uuid = '6d1e0916684c400a8fec6df9367c2a98';
-            // 使用 ashcon.app 的公共 API (不需要 Key)
-            const apiUrl = `https://api.ashcon.app/hypixel/v2/player/${uuid}`;
-            
-            const card = document.getElementById('hypixel-card');
-            const loader = card.querySelector('.loading-spinner');
-            const content = card.querySelector('.stats-content');
-
-            try {
-                const response = await fetch(apiUrl);
-                if (!response.ok) throw new Error('API Error');
-                const data = await response.json();
-
-                // 1. 处理 Rank (如果是 MVP+ 这种特殊 Rank)
-                let rankText = data.rank.replace(/_/g, ' '); // 去掉下划线
-                // 某些高级 Rank 在 API 里可能显示为 VIP_PLUS 等，这里做个简单美化
-                const rankElement = document.getElementById('player-rank');
-                
-                // 设置 Rank 颜色 (MVP+ 通常是青色)
-                if(rankText.includes('MVP')) {
-                    rankElement.classList.add('rank-mvp');
-                    // 如果有自定义 + 颜色，API 会返回，这里我们先简化处理
-                    rankText = `[${rankText.replace('PLUS', '+')}]`; 
-                } else if (rankText.includes('VIP')) {
-                    rankElement.classList.add('rank-vip');
-                    rankText = `[${rankText.replace('PLUS', '+')}]`;
-                } else {
-                    rankElement.classList.add('rank-default');
-                }
-                rankElement.textContent = rankText;
-
-                // 2. 处理 Level (保留1位小数)
-                document.getElementById('player-level').textContent = Math.floor(data.level);
-
-                // 3. 处理成就点数
-                document.getElementById('player-ap').textContent = data.achievement_points.toLocaleString();
-
-                // 4. 处理在线状态
-                const isOnline = data.online;
-                const dot = document.getElementById('online-dot');
-                const statusText = document.getElementById('online-text');
-                
-                if (isOnline) {
-                    dot.style.background = '#55ff55'; // 绿色
-                    dot.style.boxShadow = '0 0 10px #55ff55';
-                    statusText.textContent = 'Currently Online';
-                    statusText.style.color = '#ccffcc';
-                } else {
-                    dot.style.background = '#ff5555'; // 红色
-                    dot.style.boxShadow = 'none';
-                    statusText.textContent = 'Offline';
-                    statusText.style.color = '#ffcccc';
-                }
-
-                // 隐藏加载，显示内容
-                loader.style.display = 'none';
-                content.style.display = 'block';
-
-            } catch (error) {
-                console.error(error);
-                loader.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Stats Failed';
-            }
-        }
-
-        // 页面加载后执行
-        document.addEventListener('DOMContentLoaded', fetchHypixelStats);
-    </script>
+    </main>
+<script src="script.js" defer></script>
 </body>
 </html>
