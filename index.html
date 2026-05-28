@@ -9,105 +9,100 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div id="browser-warning">
-        <div class="warning-box">
-            <h1>Outdated Browser</h1>
-            <p>We have detected that you are using Internet Explorer or another outdated browser. For the best web experience and security, we strongly recommend upgrading to a modern browser.</p>
-            <p>Recommended browsers: <a href="https://www.google.com/chrome/">Chrome</a>, <a href="https://www.mozilla.org/firefox/">Firefox</a>, or <a href="https://www.microsoft.com/edge">Edge</a>.</p>
-        </div>
-    </div>
-
-    <button id="theme-toggle-btn" class="theme-switcher" aria-label="Toggle theme">
-        <i class="fas fa-sun" id="theme-icon-sun"></i>
-        <i class="fas fa-moon" id="theme-icon-moon"></i>
-    </button>
-
-    <div class="background-animation">
-        <div class="blob-red"></div>
-        <div class="blob-green"></div>
-        <div class="blob-blue"></div>
-        <div class="blob-yellow"></div>
-    </div>
-
     <main class="container">
-        <section class="profile-section-glass">
-            <div class="profile-image-container">
-                <img src="res/Loisy-Body.webp" alt="Loisy Virtual Avatar" class="profile-body-image">
-            </div>
-            <div class="glass-card profile-info">
-                <h1>Loisy</h1>
-                <p class="subtitle">Code / Rhythm / Blocks</p>
-                
-                <div class="skills">
-                    <span class="skill-tag-glass"><i class="fa-brands fa-java"></i> Java</span>
-                    <span class="skill-tag-glass"><i class="fa-solid fa-c"></i> C Lang</span>
-                    <span class="skill-tag-glass"><i class="fa-brands fa-python"></i> Python</span>
-                    <span class="skill-tag-glass"><i class="fa-solid fa-microchip"></i> Embedded</span>
-                </div>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="eyebrow">Welcome to my space</p>
+                    <h1>Loisy</h1>
+                    <p class="subtitle">Code / Rhythm / Blocks</p>
+                    
+                    <div class="skills">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C Lang</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Embedded</span>
+                    </div>
 
-                <div class="social-links">
-                    <a href="https://github.com/Loisy233" target="_blank" class="social-btn-glass github" aria-label="GitHub">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                    <a href="https://space.bilibili.com/233319653" target="_blank" class="social-btn-glass bilibili" aria-label="Bilibili">
-                        <i class="fa-brands fa-bilibili"></i>
-                    </a>
-                    <a href="https://www.youtube.com/@Loisy_uwu" target="_blank" class="social-btn-glass youtube" aria-label="YouTube">
-                        <i class="fa-brands fa-youtube"></i>
-                    </a>
-                    <a href="https://qm.qq.com/q/odvAcfIkla" target="_blank" class="social-btn-glass qq" aria-label="QQ Group">
-                        <i class="fa-brands fa-qq"></i>
-                    </a>
+                    <div class="social-links">
+                        <a href="https://github.com/Loisy233" target="_blank" class="social-btn" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="https://space.bilibili.com/233319653" target="_blank" class="social-btn" aria-label="Bilibili">
+                            <i class="fa-brands fa-bilibili"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@Loisy_uwu" target="_blank" class="social-btn" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a href="https://qm.qq.com/q/odvAcfIkla" target="_blank" class="social-btn" aria-label="QQ Group">
+                            <i class="fa-brands fa-qq"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="res/Loisy-Body.webp" alt="Loisy Virtual Avatar" class="avatar">
                 </div>
             </div>
         </section>
 
-        <section class="game-section">
-            <div class="glass-card game-card minecraft">
-                <div class="card-header">
-                    <h2><i class="fa-solid fa-cube"></i> Minecraft</h2>
-                </div>
-                <div class="mc-accounts-container">
-                    <div class="mc-account">
-                        <div class="mc-skin">
-                            <img src="" alt="LoisyLoveLife Minecraft Skin" id="minecraft-skin-image-1">
-                        </div>
-                        <h3 id="minecraft-username-1">LoisyLoveLife</h3>
-                    </div>
-                    <div class="mc-account">
-                        <div class="mc-skin">
-                            <img src="" alt="LoisyNotFound Minecraft Skin" id="minecraft-skin-image-2">
-                        </div>
-                        <h3 id="minecraft-username-2">LoisyNotFound</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card game-card osu">
-                <div class="card-header">
-                    <h2><i class="fa-solid fa-circle-notch"></i> osu!</h2>
-                </div>
-                <div class="osu-content">
-                    <a href="https://osu.ppy.sh/users/20348402" target="_blank">
-                        <img src="https://osu-sig.vercel.app/card?user=20348402&mode=std&lang=en&animation=true" alt="osu! Status" loading="lazy">
-                    </a>
-                    </div>
-            </div>
-        </section>
-
-        <footer class="glass-card footer">
-            <div class="copyright">
-                &copy; 2026 Loisy. Hosted on GitHub Pages.
-            </div>
+        <!-- Games Section -->
+        <section class="games-section">
+            <p class="eyebrow">What I Play</p>
+            <h2>Games</h2>
             
-            <div class="assist-container">
-                <span>Assisted by</span>
-                <a href="https://gemini.google.com" target="_blank" class="gemini-link icon-only">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" alt="Gemini Logo" class="gemini-logo">
-                </a>
+            <div class="games-grid">
+                <!-- Minecraft Card -->
+                <div class="game-card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-cube"></i>
+                        <h3>Minecraft</h3>
+                    </div>
+                    <div class="mc-accounts">
+                        <div class="mc-account">
+                            <div class="mc-skin">
+                                <img src="" alt="LoisyLoveLife Minecraft Skin" id="minecraft-skin-image-1">
+                            </div>
+                            <span class="mc-name">LoisyLoveLife</span>
+                        </div>
+                        <div class="mc-account">
+                            <div class="mc-skin">
+                                <img src="" alt="LoisyNotFound Minecraft Skin" id="minecraft-skin-image-2">
+                            </div>
+                            <span class="mc-name">LoisyNotFound</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- osu! Card -->
+                <div class="game-card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-circle-notch"></i>
+                        <h3>osu!</h3>
+                    </div>
+                    <div class="osu-content">
+                        <a href="https://osu.ppy.sh/users/20348402" target="_blank">
+                            <img src="https://osu-sig.vercel.app/card?user=20348402&mode=std&lang=en&animation=true" alt="osu! Status" loading="lazy">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <span class="copyright">&copy; 2026 Loisy. Hosted on GitHub Pages.</span>
+                <div class="assist">
+                    <span>Assisted by</span>
+                    <a href="https://gemini.google.com" target="_blank" class="gemini-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" alt="Gemini Logo" class="gemini-logo">
+                    </a>
+                </div>
             </div>
         </footer>
     </main>
-<script src="script.js" defer></script>
+
+    <script src="script.js" defer></script>
 </body>
 </html>
